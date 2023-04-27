@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { AuthContext } from "./providers/AuthProviders";
 
 const Login = () => {
-  const { user, signInUser } = useContext(AuthContext);
+  const { signInUser, signInWithGoogle } = useContext(AuthContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -20,6 +20,16 @@ const Login = () => {
       .catch((error) => {
         alert(error.message);
       });
+  };
+
+  // handle google sign in button
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
@@ -60,13 +70,19 @@ const Login = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
+              <button className="btn btn-info">Login</button>
             </div>
           </form>
           <Link to="/register" className="text-black text-center mb-3">
             New to Auth Master.{" "}
             <button className="text-secondary">Register</button>
           </Link>
+          <div className="text-black mb-3 ms-3">
+            <span>Sign in with</span>
+            <span onClick={handleGoogleSignIn} className="cursor-pointer text-info text-xl ms-2">
+              Google
+            </span>
+          </div>
         </div>
       </div>
     </div>

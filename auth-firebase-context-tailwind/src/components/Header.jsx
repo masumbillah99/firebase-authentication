@@ -14,29 +14,38 @@ const Header = () => {
   };
 
   return (
-    <nav className="navbar bg-info text-primary-content rounded">
+    <nav className="bg-blue-400">
       <div className="container mx-auto">
-        <a className="normal-case text-black text-2xl">Auth Firebase Context</a>
-        <div className="ms-auto text-black text-xl space-x-3">
-          <Link className="hover:text-blue-600" to="/">
-            Home
-          </Link>
-          <Link className="hover:text-blue-600" to="/login">
-            Login
-          </Link>
-          <Link className="hover:text-blue-600" to="/register">
-            Register
-          </Link>
-          {user ? (
-            <>
-              <span>{user.email}</span>
-              <button onClick={handleLogOut} className="btn btn-xs">
-                Sign out
-              </button>
-            </>
-          ) : (
-            <Link to="/login">Login</Link>
-          )}
+        <div className="navbar flex-col md:flex-row text-primary-content rounded">
+          <a className="normal-case text-black text-2xl">
+            Auth Firebase Context
+          </a>
+          <div className="flex-col md:flex-row gap-2 text-black text-xl md:ms-auto md:space-x-3 my-3 md:my-0">
+            <Link className="hover:text-white" to="/">
+              Home
+            </Link>
+            <Link className="hover:text-white" to="/login">
+              Login
+            </Link>
+            <Link className="hover:text-white" to="/register">
+              Register
+            </Link>
+            {user && (
+              <Link className="hover:text-white" to="/orders">
+                Orders
+              </Link>
+            )}
+            {user ? (
+              <>
+                <span className="text-white">{user.email}</span>
+                <button onClick={handleLogOut} className="btn btn-xs">
+                  Sign out
+                </button>
+              </>
+            ) : (
+              " "
+            )}
+          </div>
         </div>
       </div>
     </nav>

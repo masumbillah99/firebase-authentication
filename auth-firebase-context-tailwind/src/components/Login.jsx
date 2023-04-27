@@ -16,7 +16,6 @@ const Login = () => {
     signInUser(email, password)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
       })
       .catch((error) => {
         alert(error.message);
@@ -45,7 +44,7 @@ const Login = () => {
             </div>
             <div className="form-control">
               <input
-                type="text"
+                type="password"
                 name="password"
                 placeholder="password"
                 className="input input-bordered text-black"
